@@ -3,7 +3,7 @@ package sample;
 import java.util.Vector;
 
 public class College {
-
+    private final int cost_Per_Point = 300;
     private String college_Name;
     private Vector<Course> all_Courses;
 
@@ -11,6 +11,19 @@ public class College {
     public College(String name) {
         this.college_Name = name;
         this.all_Courses = new Vector<Course>();
+    }
+
+    public int get_Revenue(Object initiator) {
+        if (initiator instanceof Principle) {
+            int revenue = 0;
+            for (Course c : all_Courses)
+                revenue += c.getPoints() * c.getRegistered_Students().size() * cost_Per_Point;
+            return revenue;
+        }
+        else {
+            System.out.println("Calling object lacks permission.");
+            return -1;
+        }
     }
 
     public void add_Course(Course course) {
