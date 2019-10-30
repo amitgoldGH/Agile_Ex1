@@ -22,7 +22,7 @@ public class Main extends Application {
         //launch(args);
         Scanner sc = new Scanner(System.in);
         College c = new College("College-City");
-        Student s1 = new Student("San");
+        Student s1 = new Student("San", "San@College.com ");
         Course math = new Course("Math 101", 5, "Summer", "10:00-12:50", new String[]{"Sunday", "Monday"});
         c.add_Course(math);
         c.register_Student_To_Course(s1, math);
