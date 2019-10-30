@@ -2,20 +2,17 @@ package sample;
 
 import java.util.Vector;
 
-public class Student {
-    private String name;
+public class Student extends User {
     private double average;
     private Vector<Course> attending_Courses;
     private Vector<Course> finished_Courses;
 
-    public Student(String name) {
-        this.name = name;
+    public Student(String name, String email) {
+        this.setName(name);
+        this.setEmail(email);
         attending_Courses = new Vector<Course>();
         finished_Courses = new Vector<Course>();
     }
-
-    public String getName() { return name; }
-    public void setName(String name) { this.name = name; }
 
     public double getAverage() { return average; }
     public void setAverage(double average) { this.average = average; }
