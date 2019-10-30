@@ -56,7 +56,7 @@ public class Course {
     public String toString() {
         String res = "Course: " + name + ", points: " + points + ", Semester: " + semester + "\nDays: ";
         for (String d : days)
-            res += d + ",'";
+            res += d + ",";
 
         res += " Hours: " + hours + ", Lecturer: " + ((lecturer != null) ? lecturer.getName() : "None") + "\n";
         res += "Students: \n";
