@@ -93,7 +93,7 @@ public class Controller {
                         if (s.getName().equalsIgnoreCase(userField) && s.getEmail().equalsIgnoreCase(emailField)) {
                             flag = true;
                             root = FXMLLoader.load(getClass().getResource("Student.fxml"));
-                            studentTest.setText(userField);
+                            //studentTest.setText(userField);
                             break;
                         }
                       }
