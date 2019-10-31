@@ -1,12 +1,10 @@
 package sample;
 
 public class Principle extends User {
-    private College college;
 
-    public Principle(String name, String email, College college) {
+    public Principle(String name, String email) {
         this.setName(name);
         this.setEmail(email);
-        this.college = college;
     }
 
 

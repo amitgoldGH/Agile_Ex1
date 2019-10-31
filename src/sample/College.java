@@ -6,11 +6,17 @@ public class College {
     private final int cost_Per_Point = 300;
     private String college_Name;
     private Vector<Course> all_Courses;
+    private Vector<Student> all_Students;
+    private Vector<Lecturer> all_Lecturers;
+    private Principle principle;
 
 
     public College(String name) {
         this.college_Name = name;
         this.all_Courses = new Vector<Course>();
+        this.all_Students = new Vector<Student>();
+        this.all_Lecturers = new Vector<Lecturer>();
+        this.principle = null;
     }
 
     public int get_Revenue(Object initiator) {
@@ -25,7 +31,15 @@ public class College {
             return -1;
         }
     }
-
+    public void add_Lecturer(Lecturer lecturer) {
+        if (!(this.all_Lecturers.contains(lecturer)) && lecturer != null) {
+            this.all_Lecturers.add(lecturer);
+        }
+    }
+    public void add_Student(Student student) {
+        if (!(this.all_Students.contains(student)) && student != null)
+            this.all_Students.add(student);
+    }
     public void add_Course(Course course) {
         if (course != null) {
             if (!(all_Courses.contains(course))) {
@@ -51,4 +65,28 @@ public class College {
 
     public Vector<Course> getAll_Courses() { return all_Courses; }
     public void setAll_Courses(Vector<Course> all_Courses) { this.all_Courses = all_Courses; }
+
+    public Vector<Student> getAll_Students() {
+        return all_Students;
+    }
+
+    public void setAll_Students(Vector<Student> all_Students) {
+        this.all_Students = all_Students;
+    }
+
+    public Vector<Lecturer> getAll_Lecturers() {
+        return all_Lecturers;
+    }
+
+    public void setAll_Lecturers(Vector<Lecturer> all_Lecturers) {
+        this.all_Lecturers = all_Lecturers;
+    }
+
+    public Principle getPrinciple() {
+        return principle;
+    }
+
+    public void setPrinciple(Principle principle) {
+        this.principle = principle;
+    }
 }
