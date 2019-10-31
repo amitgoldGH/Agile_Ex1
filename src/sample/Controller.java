@@ -35,7 +35,7 @@ public class Controller {
     @FXML
     private Button buttLogin;
     @FXML
-    static private Text studentTest;
+    private Text studentTest;
 
     ObservableList<String> roleList = FXCollections.observableArrayList("Student", "Lecturer", "Principle");
     @FXML
@@ -92,7 +92,11 @@ public class Controller {
                     for (Student s : Controller.c.getAll_Students()) {
                         if (s.getName().equalsIgnoreCase(userField) && s.getEmail().equalsIgnoreCase(emailField)) {
                             flag = true;
+                            controller2.passUserField(userField);
+                            controller2.passEmailField(emailField);
+                            controller2.passCourseInfo(s.getAttending_Courses().toString());
                             root = FXMLLoader.load(getClass().getResource("Student.fxml"));
+
                             //studentTest.setText(userField);
                             break;
                         }
