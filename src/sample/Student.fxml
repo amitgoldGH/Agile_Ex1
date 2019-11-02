@@ -12,6 +12,7 @@
       <Label fx:id="userLabel" layoutX="67.0" layoutY="124.0" text="Label" />
       <Label fx:id="emailLabel" layoutX="67.0" layoutY="179.0" text="Label" />
       <Label fx:id="courseArea" layoutX="88.0" layoutY="233.0" prefHeight="139.0" prefWidth="321.0" text="Label" />
+
       <Text fill="#26b2ff" layoutX="81.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Student">
          <font>
             <Font size="52.0" />

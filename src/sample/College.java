@@ -67,13 +67,26 @@ public class College {
 //            System.out.println(c.toString());
 //    }
 
-    public String getAllLectureName() {
+     public String getAllLectureName() {
         Vector<String> lecturerName = new Vector();
         for (Lecturer l : all_Lecturers) {
             lecturerName.add(l.getName());
         }
         return lecturerName.toString();
     }
+
+
+
+    public String getAllStudentName() {
+        Vector<String> studentName = new Vector();
+        for (Student s : all_Students) {
+            studentName.add(s.getName());
+
+        }
+        return studentName.toString();
+    }
+
+
 
 
 

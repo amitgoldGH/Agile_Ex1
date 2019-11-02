@@ -8,13 +8,16 @@ public class Controller4 {
 
     static String userField;
     static String emailField;
-    static String courseInformation;
+    static String LecInformation;
+    static String studInformation;
     @FXML
     private Label userLabel;
     @FXML
     private Label emailLabel;
     @FXML
     private Label LecturerArea;
+    @FXML
+    private Label StudentArea;
 
     @FXML
     void initialize() {
@@ -22,7 +25,8 @@ public class Controller4 {
         System.out.println("userfield: " + sample.controller2.userField);
         userLabel.setText(userField);
         emailLabel.setText(emailField);
-        LecturerArea.setText(courseInformation);
+        LecturerArea.setText(LecInformation);
+        StudentArea.setText(studInformation);
     }
 
     static void passUserField(String user) {
@@ -34,7 +38,10 @@ public class Controller4 {
     }
 
        static void passLecturerInfo(String LecturesName) {
-        sample.Controller4.courseInformation = LecturesName;
+        sample.Controller4.LecInformation = LecturesName;
+    }
+    static void passStudentInfo(String StudentName) {
+        sample.Controller4.studInformation = StudentName;
     }
 
 

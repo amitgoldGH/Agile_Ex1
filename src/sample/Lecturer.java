@@ -19,4 +19,6 @@ public class Lecturer extends User {
 
     public double getSalary() { return salary; }
     public void setSalary(double salary) { salary = salary; }
+
+
 }

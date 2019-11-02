@@ -10,10 +10,10 @@
 
 <AnchorPane prefHeight="375.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
    <children>
-      <Button fx:id="buttLogin" layoutX="273.0" layoutY="238.0" mnemonicParsing="false" onAction="#handleButtonAction" text="Login" />
+      <Button fx:id="buttLogin" layoutX="273.0" layoutY="258.0" mnemonicParsing="false" onAction="#handleButtonAction" text="Login" />
       <TextField fx:id="txtName" layoutX="86.0" layoutY="84.0" promptText="Name" />
       <TextField fx:id="txtEmail" layoutX="86.0" layoutY="146.0" promptText="Email" />
-      <Label fx:id="txtStatus" layoutX="86.0" layoutY="270.0" prefHeight="21.0" text="Status" />
+      <Label fx:id="txtStatus" layoutX="94.0" layoutY="260.0" prefHeight="21.0" prefWidth="128.0" text="Status" />
       <ComboBox fx:id="roleBox" layoutX="86.0" layoutY="207.0" prefWidth="150.0" />
       <Text fill="#2e99ff" fontSmoothingType="LCD" layoutX="56.0" layoutY="52.0" strokeType="OUTSIDE" strokeWidth="0.0" text="welcome">
          <font>

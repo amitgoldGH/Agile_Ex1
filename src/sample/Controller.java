@@ -13,10 +13,12 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import javax.swing.*;
+import java.awt.*;
 import java.util.ArrayList;
 
 public class Controller {
@@ -46,27 +48,29 @@ public class Controller {
         if (initFlag == false) {
             roleBox.setValue("Student");
             roleBox.setItems(roleList);
+            txtStatus.setText(" ");
             //College c = new College("College-City");
             Student s1 = new Student("San", "San@College.com");
             Student s2 = new Student("San1", "San@College.com");
-            Student s3 = new Student("1", "1");
+         //   Student s3 = new Student("1", "1");
 
-            Principle p1 = new Principle("3", "3");     //Manager , Manager@College.com
+
+            Principle p1 = new Principle("Manager", "Manager@College.com");
            //Principle p = new Principle("Manager", "Manager@College.com");
 
             Lecturer l1 = new Lecturer("Teacher", "Teacher@College.com", 6969);
             Lecturer l2 = new Lecturer("Teacher1", "Teacher1@College.com", 5329);
-            Lecturer l3 = new Lecturer("2", "2", 5329);
+          //  Lecturer l3 = new Lecturer("2", "2", 5329);
 
             c.setPrinciple(p1);
 
             c.add_Lecturer(l1);
             c.add_Lecturer(l2);
-            c.add_Lecturer(l3);
+      //    c.add_Lecturer(l3);
 
             c.add_Student(s1);
             c.add_Student(s2);
-            c.add_Student(s3);
+        //    c.add_Student(s3);
 
             Course math = new Course("Math 101", 5, "Summer", "10:00-12:50", new String[]{"Sunday", "Monday"});
             math.assign_Lecturer(l1);
@@ -84,7 +88,7 @@ public class Controller {
             c.register_Student_To_Course(s1, math);
             c.register_Student_To_Course(s2, math);
             c.register_Student_To_Course(s1, Agile);
-            c.register_Student_To_Course(s3, Agile);
+          //  c.register_Student_To_Course(s3, Agile);
 
 
             //c.show_All_Courses();
@@ -102,9 +106,7 @@ public class Controller {
 
     @FXML
     private void handleButtonAction(ActionEvent event) {
-        txtStatus.setText("Login was clicked");
-
-        String userField = txtName.getText();
+         String userField = txtName.getText();
         String emailField = txtEmail.getText();
         String role = roleBox.getValue().toString();
         c.show_All_Courses();
@@ -116,6 +118,7 @@ public class Controller {
         try {
             switch (role) {
                 case "Student" : {
+
                     System.out.println("Student selected");
                     for (Student s : Controller.c.getAll_Students()) {
                         if (s.getName().equalsIgnoreCase(userField) && s.getEmail().equalsIgnoreCase(emailField)) {
@@ -128,6 +131,10 @@ public class Controller {
                             //studentTest.setText(userField);
                             break;
                         }
+                        else {
+                            txtStatus.setText("Information Is Incorrect");
+
+                            }
                       }
                     if (flag == true)
                         System.out.println("Student found!");
@@ -146,6 +153,7 @@ public class Controller {
                             root = FXMLLoader.load(getClass().getResource("Lecturer.fxml"));
                             break;
                         }
+                        else txtStatus.setText("Information Is Incorrect");
                     }
                     if (flag == true)
                         System.out.println("Lecturer found!");
@@ -160,11 +168,13 @@ public class Controller {
                         flag = true;
                         Controller4.passUserField(userField);
                         Controller4.passEmailField(emailField);
-                       Controller4.passLecturerInfo(c.getAllLectureName());
+                         Controller4.passLecturerInfo(c.getAllLectureName());
+                        Controller4.passStudentInfo(c.getAllStudentName());
                         root = FXMLLoader.load(getClass().getResource("Principle.fxml"));
                         //root = FXMLLoader.load(getClass().getResource("Principle.fxml"));
                         break;
                     }
+                    else txtStatus.setText("Information Is Incorrect");
 
                     if (flag == true)
                         System.out.println("Principle found!");
