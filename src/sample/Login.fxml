@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.text.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
 <?import javafx.scene.*?>
@@ -13,5 +15,10 @@
       <TextField fx:id="txtEmail" layoutX="86.0" layoutY="146.0" promptText="Email" />
       <Label fx:id="txtStatus" layoutX="86.0" layoutY="270.0" prefHeight="21.0" text="Status" />
       <ComboBox fx:id="roleBox" layoutX="86.0" layoutY="207.0" prefWidth="150.0" />
+      <Text fill="#2e99ff" fontSmoothingType="LCD" layoutX="56.0" layoutY="52.0" strokeType="OUTSIDE" strokeWidth="0.0" text="welcome">
+         <font>
+            <Font size="27.0" />
+         </font></Text>
+      <Text layoutX="56.0" layoutY="224.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Role:" />
    </children>
 </AnchorPane>

@@ -49,16 +49,44 @@ public class Controller {
             //College c = new College("College-City");
             Student s1 = new Student("San", "San@College.com");
             Student s2 = new Student("San1", "San@College.com");
-            Principle p = new Principle("Manager", "Manager@College.com");
-            Lecturer l = new Lecturer("Teacher", "Teacher@College.com", 6969);
-            c.setPrinciple(p);
-            c.add_Lecturer(l);
+            Student s3 = new Student("1", "1");
+
+            Principle p1 = new Principle("3", "3");     //Manager , Manager@College.com
+           //Principle p = new Principle("Manager", "Manager@College.com");
+
+            Lecturer l1 = new Lecturer("Teacher", "Teacher@College.com", 6969);
+            Lecturer l2 = new Lecturer("Teacher1", "Teacher1@College.com", 5329);
+            Lecturer l3 = new Lecturer("2", "2", 5329);
+
+            c.setPrinciple(p1);
+
+            c.add_Lecturer(l1);
+            c.add_Lecturer(l2);
+            c.add_Lecturer(l3);
+
             c.add_Student(s1);
             c.add_Student(s2);
+            c.add_Student(s3);
+
             Course math = new Course("Math 101", 5, "Summer", "10:00-12:50", new String[]{"Sunday", "Monday"});
+            math.assign_Lecturer(l1);
+
+            Course Biology = new Course("Biology 202", 5, "Spring", "11:00-13:50", new String[]{"Monday"});
+            Biology.assign_Lecturer(l2);
+
+            Course Agile = new Course("Agile 10346", 5, "winter", "08:00-10:50", new String[]{"Friday"});
+            Agile.assign_Lecturer(l2);
+
+            c.add_Course(Biology);
             c.add_Course(math);
+            c.add_Course(Agile);
+
             c.register_Student_To_Course(s1, math);
             c.register_Student_To_Course(s2, math);
+            c.register_Student_To_Course(s1, Agile);
+            c.register_Student_To_Course(s3, Agile);
+
+
             //c.show_All_Courses();
         /*
         ArrayList<Student> allStudents = new ArrayList<>();
@@ -112,7 +140,10 @@ public class Controller {
                     for (Lecturer l : Controller.c.getAll_Lecturers()) {
                         if (l.getName().equalsIgnoreCase(userField) && l.getEmail().equalsIgnoreCase(emailField)) {
                             flag = true;
-                            //root = FXMLLoader.load(getClass().getResource("Lecturer.fxml"));
+                            Controller3.passUserField(userField);
+                            Controller3.passEmailField(emailField);
+                            Controller3.passCourseInfo(l.getAttending_Courses().toString());
+                            root = FXMLLoader.load(getClass().getResource("Lecturer.fxml"));
                             break;
                         }
                     }
@@ -125,7 +156,12 @@ public class Controller {
                 case "Principle" : {
                     System.out.println("Principle selected");
                     if (Controller.c.getPrinciple().getName().equalsIgnoreCase(userField) && c.getPrinciple().getEmail().equalsIgnoreCase(emailField)) {
+                        Principle p;
                         flag = true;
+                        Controller4.passUserField(userField);
+                        Controller4.passEmailField(emailField);
+                       Controller4.passLecturerInfo(c.getAllLectureName());
+                        root = FXMLLoader.load(getClass().getResource("Principle.fxml"));
                         //root = FXMLLoader.load(getClass().getResource("Principle.fxml"));
                         break;
                     }
@@ -148,7 +184,7 @@ public class Controller {
                 stage.setScene(new Scene(root, 450, 450));
                 stage.show();
 
-                // Hide this current window (if this is what you want)
+                // Hide this current window
                 ((Node) (event.getSource())).getScene().getWindow().hide();
             }
         }

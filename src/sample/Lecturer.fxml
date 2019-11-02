@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller3">
+<children>
+    <Label fx:id="userLabel" layoutX="67.0" layoutY="126.0" text="Label" />
+    <Label fx:id="emailLabel" layoutX="67.0" layoutY="181.0" text="Label" />
+    <Label fx:id="courseArea" layoutX="88.0" layoutY="235.0" prefHeight="139.0" prefWidth="321.0" text="Label" />
+      <Text fill="#2691ff" layoutX="42.0" layoutY="80.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Lecturer">
+         <font>
+            <Font size="52.0" />
+         </font>
+         <effect>
+            <Glow level="0.0" />
+         </effect>
+      </Text>
+</children>
+</AnchorPane>

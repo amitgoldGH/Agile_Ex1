@@ -13,6 +13,7 @@ public class Lecturer extends User {
         attending_Courses = new Vector<Course>();
     }
 
+
     public Vector<Course> getAttending_Courses() { return attending_Courses; }
     public void setAttending_Courses(Vector<Course> attending_Courses) { this.attending_Courses = attending_Courses; }
 

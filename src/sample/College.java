@@ -55,10 +55,28 @@ public class College {
             }
         }
     }
+
     public void show_All_Courses() {
+        System.out.println("**show_All_Courses**");
         for (Course c : all_Courses)
             System.out.println(c.toString());
     }
+
+//    public void show_All_Lecturer() {
+//        for (Course c : all_Courses)
+//            System.out.println(c.toString());
+//    }
+
+    public String getAllLectureName() {
+        Vector<String> lecturerName = new Vector();
+        for (Lecturer l : all_Lecturers) {
+            lecturerName.add(l.getName());
+        }
+        return lecturerName.toString();
+    }
+
+
+
 
     public String getCollege_Name() { return college_Name; }
     public void setCollege_Name(String college_Name) { this.college_Name = college_Name; }
