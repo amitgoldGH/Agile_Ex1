@@ -2,14 +2,13 @@ package sample;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
-import javafx.scene.text.Text;
+
 
 public class controller2 {
 
     static String userField;
-    static String emailField;
-    static String courseInformation;
+    private static String emailField;
+    private static String courseInformation;
     @FXML
     private Label userLabel;
     @FXML
@@ -20,7 +19,7 @@ public class controller2 {
     @FXML
     void initialize() {
         System.out.println("In Controller2 Init");
-        System.out.println("userfield: " + controller2.userField);
+        System.out.println("userField: " + controller2.userField);
         userLabel.setText(userField);
         emailLabel.setText(emailField);
         courseArea.setText(courseInformation);

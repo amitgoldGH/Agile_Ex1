@@ -3,13 +3,12 @@ package sample;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 
-
 public class Controller4 {
 
-    static String userField;
-    static String emailField;
-    static String LecInformation;
-    static String studInformation;
+    private static String userField;
+    private static String emailField;
+    private static String LecInformation;
+    private static String studInformation;
     @FXML
     private Label userLabel;
     @FXML

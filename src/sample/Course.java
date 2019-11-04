@@ -3,14 +3,18 @@ import java.util.Vector;
 
 public class Course {
     private String name;
+    private int courseId;
+
+    private String semester;
+    private int lecturer;
+    private Vector<Integer> registeredStudents;
+
     private int points;
     private String hours;
     private Vector<String> days;
-    private String semester;
-    private Vector<Student> registered_Students;
-    private Lecturer lecturer;
 
-    public Course(String name, int points, String semester, String hours, String[] days){
+    public Course(int courseId, String name, int points, String semester, String hours, String[] days){
+        this.courseId = courseId;
         this.name = name;
         this.points = points;
         this.semester = semester;
@@ -19,53 +23,30 @@ public class Course {
         for (String d : days) {
             this.days.add(d);
         }
-        registered_Students = new Vector<>();
-        this.lecturer = null;
+        registeredStudents = new Vector<>();
+        this.lecturer = -1;
     }
 
-    public void register_Student(Student student) {
-        if (student != null) {
-            if (registered_Students.contains(student)) {
-                System.out.println(student.getName() + " Is already registered to " + this.name);
-            } else {
-                this.registered_Students.add(student);
-                student.getAttending_Courses().add(this);
-                System.out.println(student.getName() + " Has been registered to " + this.name);
-            }
-        }
-    }
-    public void assign_Lecturer(Lecturer lecturer) {
-        if (lecturer != null) {
-            if (lecturer == this.lecturer) {
-                System.out.println(lecturer.getName() + " Is already assigned to " + this.name);
-            }
-            else {
-                if (this.lecturer != null) {
-                    this.lecturer.getAttending_Courses().remove(this);
-                    System.out.println(this.lecturer.getName() + " Has been unassigned from " + this.name);
-                }
-                this.lecturer = lecturer;
-                lecturer.getAttending_Courses().add(this);
-                System.out.println(this.lecturer.getName() + " Has been assigned to " + this.name);
-
-            }
-        }
-
-    }
     @Override
     public String toString() {
         String res = "Course: " + name + ", points: " + points + ", Semester: " + semester + "\nDays: ";
         for (String d : days)
             res += d + ",";
 
-        res += " Hours: " + hours + ", Lecturer: " + ((lecturer != null) ? lecturer.getName() : "None") + "\n";
-        res += "Students: \n";
-        for (Student s : registered_Students)
-            res += s.getName() + ", ";
-
+        res += " Hours: " + hours + ", Lecturer: " + lecturer + "\n";
+        res += "Students id list: \n";
+        for (int s : registeredStudents)
+            res += s + ", ";
+        res += "\n";
         return res;
     }
 
+    public int getCourseId() {
+        return courseId;
+    }
+    public void setCourseId(int courseId) {
+        this.courseId = courseId;
+    }
 
     public String getName() { return name; }
     public void setName(String name) { this.name = name; }
@@ -77,8 +58,8 @@ public class Course {
     public void setDays(Vector<String> days) { this.days = days; }
     public String getSemester() { return semester; }
     public void setSemester(String semester) { this.semester = semester; }
-    public Vector<Student> getRegistered_Students() { return registered_Students; }
-    public void setRegistered_Students(Vector<Student> registered_Students) { this.registered_Students = registered_Students; }
-    public Lecturer getLecturer() { return lecturer; }
-    public void setLecturer(Lecturer lecturer) { this.lecturer = lecturer; }
+    public Vector<Integer> getRegisteredStudents() { return registeredStudents; }
+    public void setRegisteredStudents(Vector<Integer> registeredStudents) { this.registeredStudents = registeredStudents; }
+    public int getLecturer() { return lecturer; }
+    public void setLecturer(int lecturer) { this.lecturer = lecturer; }
 }

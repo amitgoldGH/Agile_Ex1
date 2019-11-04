@@ -3,22 +3,39 @@ package sample;
 import java.util.Vector;
 
 public class Lecturer extends User {
-    private Vector<Course> attending_Courses;
-    private double salary;
 
-    public Lecturer(String name, String email, double salary) {
+    private int seniority;
+    private double salary;
+    private Vector<Integer> attendingCourses;
+
+    public Lecturer(int id, String name, String email, double salary) {
+        this.setId(id);
         this.setName(name);
         this.setEmail(email);
         this.salary = salary;
-        attending_Courses = new Vector<Course>();
+        this.seniority=0;
+        attendingCourses = new Vector<>();
     }
 
+    public int getSeniority() {
+        return seniority;
+    }
+    public void setSeniority(int seniority) {
+        this.seniority = seniority;
+    }
 
-    public Vector<Course> getAttending_Courses() { return attending_Courses; }
-    public void setAttending_Courses(Vector<Course> attending_Courses) { this.attending_Courses = attending_Courses; }
+    public Vector<Integer> getAttendingCourses() {
+        return attendingCourses;
+    }
+    public void setAttendingCourses(Vector<Integer> attendingCourses) {
+        this.attendingCourses = attendingCourses;
+    }
 
-    public double getSalary() { return salary; }
-    public void setSalary(double salary) { salary = salary; }
-
+    public double getSalary() {
+        return salary;
+    }
+    public void setSalary(double salary) {
+        this.salary = salary;
+    }
 
 }

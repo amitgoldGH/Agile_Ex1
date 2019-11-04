@@ -3,23 +3,47 @@ package sample;
 import java.util.Vector;
 
 public class Student extends User {
+    private int collegeYear;
+    private double monthlyPayment;
+    private Vector<Integer> attendingCourses;
+    private Vector<Integer> finishedCourses;
     private double average;
-    private Vector<Course> attending_Courses;
-    private Vector<Course> finished_Courses;
 
-    public Student(String name, String email) {
+
+    public Student(int id,String name, String email) {
+        this.setId(id);
         this.setName(name);
         this.setEmail(email);
-        attending_Courses = new Vector<Course>();
-        finished_Courses = new Vector<Course>();
+        this.collegeYear = 0;
+        this.monthlyPayment = 0;
+        attendingCourses = new Vector<>();
+        finishedCourses = new Vector<>();
+    }
+
+    public int getCollegeYear() {
+        return collegeYear;
+    }
+    public void setCollegeYear(int collegeYear) {
+        this.collegeYear = collegeYear;
+    }
+
+    public double getMonthlyPayment() {
+        return monthlyPayment;
+    }
+    public void setMonthlyPayment(double monthlyPayment) {
+        this.monthlyPayment = monthlyPayment;
+    }
+
+    public Vector<Integer> getAttendingCourses() {
+        return attendingCourses;
+    }
+    public void setAttendingCourses(Vector<Integer> attendingCourses) {
+        this.attendingCourses = attendingCourses;
     }
 
     public double getAverage() { return average; }
     public void setAverage(double average) { this.average = average; }
 
-    public Vector<Course> getAttending_Courses() { return attending_Courses; }
-    public void setAttending_Courses(Vector<Course> attending_Courses) { this.attending_Courses = attending_Courses; }
-
-    public Vector<Course> getFinished_Courses() { return finished_Courses; }
-    public void setFinished_Courses(Vector<Course> finished_Courses) { this.finished_Courses = finished_Courses; }
+    public Vector<Integer> getFinishedCourses() { return finishedCourses; }
+    public void setFinished_Courses(Vector<Integer> finishedCourses) { this.finishedCourses = finishedCourses; }
 }

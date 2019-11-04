@@ -1,29 +1,30 @@
 package sample;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Vector;
 
 public class College {
-    private final int cost_Per_Point = 300;
-    private String college_Name;
-    private Vector<Course> all_Courses;
-    private Vector<Student> all_Students;
-    private Vector<Lecturer> all_Lecturers;
+    private final int costPerPoint = 300;
+    private String collegeName;
+    private Map<Integer,Course> allCourses;
+    private Map<Integer,Student> allStudents;
+    private Map<Integer,Lecturer> allLecturers;
     private Principle principle;
 
-
     public College(String name) {
-        this.college_Name = name;
-        this.all_Courses = new Vector<Course>();
-        this.all_Students = new Vector<Student>();
-        this.all_Lecturers = new Vector<Lecturer>();
+        this.collegeName = name;
+        this.allCourses = new HashMap<>();
+        this.allStudents = new HashMap<>();
+        this.allLecturers = new HashMap<>();
         this.principle = null;
     }
-
-    public int get_Revenue(Object initiator) {
+/*
+    public int getRevenue(Object initiator) {
         if (initiator instanceof Principle) {
             int revenue = 0;
-            for (Course c : all_Courses)
-                revenue += c.getPoints() * c.getRegistered_Students().size() * cost_Per_Point;
+            for (Course c : allCourses)
+                revenue += c.getPoints() * c.getRegisteredStudents().size() * costPerPoint;
             return revenue;
         }
         else {
@@ -31,35 +32,83 @@ public class College {
             return -1;
         }
     }
-    public void add_Lecturer(Lecturer lecturer) {
-        if (!(this.all_Lecturers.contains(lecturer)) && lecturer != null) {
-            this.all_Lecturers.add(lecturer);
-        }
-    }
-    public void add_Student(Student student) {
-        if (!(this.all_Students.contains(student)) && student != null)
-            this.all_Students.add(student);
-    }
-    public void add_Course(Course course) {
-        if (course != null) {
-            if (!(all_Courses.contains(course))) {
-                all_Courses.add(course);
-                System.out.println((course.getName() + " Was added to " + this.getCollege_Name() + " College."));
+  */
+    public void addLecturer(Lecturer lecturer) {
+        if (lecturer != null){
+            if(!allLecturers.containsKey(lecturer.getId())) {
+                allLecturers.put(lecturer.getId(), lecturer);
+                System.out.println(lecturer.getName() + " has been added.");
             }
-        }
-    }
-    public void register_Student_To_Course(Student student, Course course) {
-        if (student != null && course != null) {
-            if (all_Courses.contains(course)) {
-                course.register_Student(student);
+            else{
+                System.out.println(lecturer.getName() +" already exists.");
             }
         }
     }
 
+    public void addStudent(Student student) {
+        if (student != null){
+            if(!allStudents.containsKey(student.getId())) {
+                allStudents.put(student.getId(), student);
+                System.out.println(student.getName() +" has been added.");
+            }
+            else{
+                System.out.println(student.getName() +" already exists.");
+            }
+        }
+    }
+
+    public void addCourse(Course course) {
+        if (course != null) {
+            if (!allCourses.containsKey(course.getCourseId())) {
+                allCourses.put(course.getCourseId(), course);
+                System.out.println(course.getName() + " has been added.");
+            } else {
+                System.out.println(course.getName() + " already exists.");
+            }
+        }
+    }
+
+    public void registerStudentToCourse(Student student, Course course) {
+        if (student != null && course != null) {
+            int studentId = student.getId();
+            int courseId = course.getCourseId();
+            if (allCourses.containsKey(courseId)) {
+                if (allCourses.get(courseId).getRegisteredStudents().contains(studentId)) {
+                    System.out.println(allStudents.get(studentId).getName() + " Is already registered to " + allCourses.get(courseId).getName());
+                } else {
+                    allCourses.get(courseId).getRegisteredStudents().add(studentId);
+                   allStudents.get(studentId).getAttendingCourses().add(courseId);
+                    System.out.println(allStudents.get(studentId).getName() + " Has been registered to " + allCourses.get(courseId).getName());
+                }
+            }
+        }
+    }
+
+    public void assignLecturerToCourse(Lecturer lecturer, Course course) {
+        if (lecturer != null && course != null) {
+            int lecturerId = lecturer.getId();
+            int courseId = course.getCourseId();
+            if (lecturerId == allCourses.get(courseId).getLecturer()) {
+                System.out.println(allLecturers.get(lecturerId).getName() + " Is already assigned to " + allCourses.get(courseId).getName());
+            }
+            else {
+                if (allCourses.get(courseId).getLecturer() != -1) {
+                    allLecturers.get(allCourses.get(courseId).getLecturer()).getAttendingCourses().removeElement(course.getCourseId());
+                    System.out.println(allLecturers.get(allCourses.get(courseId).getLecturer()).getName() + " Has been unassigned from " + allCourses.get(courseId).getName());
+                }
+                allCourses.get(courseId).setLecturer(lecturerId);
+                allLecturers.get(lecturerId).getAttendingCourses().add(courseId);
+                System.out.println(allLecturers.get(lecturerId).getName() + " Has been assigned to " + allCourses.get(courseId).getName());
+            }
+        }
+
+    }
+
+
     public void show_All_Courses() {
         System.out.println("**show_All_Courses**");
-        for (Course c : all_Courses)
-            System.out.println(c.toString());
+        for (Map.Entry<Integer,Course> c :allCourses.entrySet())
+            System.out.println(c.getValue().toString());
     }
 
 //    public void show_All_Lecturer() {
@@ -69,8 +118,8 @@ public class College {
 
      public String getAllLectureName() {
         Vector<String> lecturerName = new Vector();
-        for (Lecturer l : all_Lecturers) {
-            lecturerName.add(l.getName());
+        for (Map.Entry<Integer,Lecturer> l : allLecturers.entrySet()) {
+            lecturerName.add(l.getValue().getName());
         }
         return lecturerName.toString();
     }
@@ -79,9 +128,8 @@ public class College {
 
     public String getAllStudentName() {
         Vector<String> studentName = new Vector();
-        for (Student s : all_Students) {
-            studentName.add(s.getName());
-
+        for (Map.Entry<Integer,Student> s : allStudents.entrySet()) {
+            studentName.add(s.getValue().getName());
         }
         return studentName.toString();
     }
@@ -91,32 +139,29 @@ public class College {
 
 
 
-    public String getCollege_Name() { return college_Name; }
-    public void setCollege_Name(String college_Name) { this.college_Name = college_Name; }
+    public String getCollegeName() { return collegeName; }
+    public void setCollegeName(String college_Name) { this.collegeName = college_Name; }
 
-    public Vector<Course> getAll_Courses() { return all_Courses; }
-    public void setAll_Courses(Vector<Course> all_Courses) { this.all_Courses = all_Courses; }
+    public Map<Integer,Course> getAllCourses() { return allCourses; }
+    public void setAllCourses(Map<Integer,Course> allCourses) { this.allCourses = allCourses; }
 
-    public Vector<Student> getAll_Students() {
-        return all_Students;
+    public Map<Integer,Student> getAllStudents() {
+        return allStudents;
+    }
+    public void setAllStudents(Map<Integer,Student> allStudents) {
+        this.allStudents = allStudents;
     }
 
-    public void setAll_Students(Vector<Student> all_Students) {
-        this.all_Students = all_Students;
+    public Map<Integer,Lecturer> getAllLecturers() {
+        return allLecturers;
     }
-
-    public Vector<Lecturer> getAll_Lecturers() {
-        return all_Lecturers;
-    }
-
-    public void setAll_Lecturers(Vector<Lecturer> all_Lecturers) {
-        this.all_Lecturers = all_Lecturers;
+    public void setAllLecturers(Map<Integer,Lecturer> allLecturers) {
+        this.allLecturers = allLecturers;
     }
 
     public Principle getPrinciple() {
         return principle;
     }
-
     public void setPrinciple(Principle principle) {
         this.principle = principle;
     }
